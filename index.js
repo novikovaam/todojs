@@ -1,6 +1,5 @@
 const toDoInput = document.querySelector('.toDoInput')
 const toDoBtn = document.querySelector('.toDoBtn')
-//const toDoList = document.querySelector('.toDoList')
 
 const root = document.querySelector('#root')
 let arrayTasks = []
@@ -11,30 +10,30 @@ let arrayTasks = []
 const clearTaskList = () => {
     root.innerHTML = ''
 }
-const addTaskArr = (event) => {
+let addTaskArr = (event) => {
     event.preventDefault()
 
     let date = new Date()
     let month = date.getMonth()
-    if (month === 3) {
-        month = 'march'
+    let day = date.getDate()
+    if (month === 4) {
+        month = 'may'
     }
-    let day = date.getDay()
-
     clearTaskList()
 
     let newTask = toDoInput.value
     toDoInput.value = ''
-
     arrayTasks.push({value: newTask, data: {dayDate: '0' + day, monthDate: month}})
     arrayTasks.forEach(item => {
         root.append(renderTask(item))
     })
-    console.log(arrayTasks)
-    localStorage.setItem('value', JSON.stringify(arrayTasks))
-    let raw = localStorage.getItem('value')
-    JSON.parse(raw)
-    console.log(raw)
+    let serialObj = JSON.stringify(arrayTasks)
+    localStorage.setItem("value", serialObj);
+    let returnObj = JSON.parse(localStorage.getItem("value"))
+    returnObj.forEach(item => {
+        arrayTasks.push(item)
+    })
+    console.log('test')
 }
 
 const renderTask = (item) => {
@@ -45,5 +44,16 @@ const renderTask = (item) => {
     wrapper.append(task)
     return wrapper
 }
-toDoBtn.addEventListener('click', addTaskArr);
 
+/*const renderAfterLoad = (item) => {
+    let serialObj = JSON.stringify(arrayTasks)
+    localStorage.setItem("value", serialObj);
+    let returnObj = JSON.parse(localStorage.getItem("value"))
+    returnObj.forEach(item => {
+        arrayTasks.push(item)
+    })
+    console.log('test')
+}*/
+
+//window.addEventListener('load', renderAfterLoad);
+toDoBtn.addEventListener('click', addTaskArr);
