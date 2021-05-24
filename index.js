@@ -55,5 +55,5 @@ const renderTask = (item) => {
     console.log('test')
 }*/
 
-//window.addEventListener('load', renderAfterLoad);
+//window.addEventListener('onload', renderAfterLoad);
 toDoBtn.addEventListener('click', addTaskArr);
