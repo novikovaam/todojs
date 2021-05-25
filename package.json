@@ -6,5 +6,8 @@
   "repository": "https://github.com/novikovaam/todojs",
   "author": "Marina Novikova",
   "license": "MIT",
-  "private": true
+  "private": true,
+  "scripts": {
+    "lint": "prettier --write ."
+  }
 }
